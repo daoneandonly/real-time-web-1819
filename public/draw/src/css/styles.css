@@ -1,0 +1,22 @@
+* {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.picture {
+  width: 50rem;
+  height: 50rem;
+  display: flex;
+  margin: 0 auto;
+}
+
+div > div {
+  margin: 0;
+  padding: 0;
+}
+
+div > div > div {
+  width: calc(50rem / 24);
+  height: calc(50rem / 24);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
