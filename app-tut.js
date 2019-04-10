@@ -1,22 +1,21 @@
-const express = require("express");
-const path = require("path");
-var app = require("express")();
-var http = require("http").Server(app);
-var io = require("socket.io")(http);
+const express = require('express')
+const app = express()
+const path = require('path')
+const server = require('http').createServer(app)
+const io = require('socket.io')(server)
 
-app.use(express.static(path.join(__dirname + "/public")));
+app.use(express.static(path.join(__dirname, 'public/draw')))
 
-io.on("connection", function(socket) {
-  console.log("a user connected");
-  socket.on("chat message", function(msg) {
-    console.log("message: " + msg);
-    io.emit("chat message", msg);
-  });
-  socket.on("disconnect", function() {
-    console.log("user disconnected");
-  });
-});
+io.on('connection', function(socket) {
+  console.log('a user connected (ID)')
+  socket.on('chat message', function(userid, msg) {
+    io.emit('chat message', userid, msg)
+  })
+  socket.on('disconnect', function() {
+    console.log('user disconnected')
+  })
+})
 
-http.listen(3000, function() {
-  console.log("listening on *:3000");
-});
+server.listen(3000, () => {
+  console.log('Listening op port 3000')
+})

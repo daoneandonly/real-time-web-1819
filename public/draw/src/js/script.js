@@ -1,9 +1,17 @@
+var socket = io()
 var picture = document.querySelector('.picture')
 var gridSize = 24
+var currentColor = document.querySelector('input[type=color]')
+var colorValue = currentColor.value
+
+currentColor.addEventListener('change', () => {
+  colorValue = currentColor.value
+})
 
 function changeColor(e) {
   let block = e.target
-  block.style = 'background-color: black;'
+  block.style = 'background-color: ' + colorValue + ';'
+  socket.emit('change color', block.classList.value)
 }
 
 for (var i = 0; i < gridSize; i++) {
@@ -20,3 +28,9 @@ for (var i = 0; i < gridSize; i++) {
   }
   picture.appendChild(row)
 }
+
+socket.on('change color', function(location) {
+  console.log('New Cell to be colored ' + location)
+  let colorCell = document.querySelector('.' + location)
+  colorCell.style = 'background-color: black;'
+})
