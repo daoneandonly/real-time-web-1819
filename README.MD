@@ -6,11 +6,12 @@ My real time app lets you draw individual together with others in a grid.
 
 Install the app
 
-````bash
-npm install```
+```bash
+npm install
+```
 
 Run the app
 
 ```bash
 npm start
-````
+```
