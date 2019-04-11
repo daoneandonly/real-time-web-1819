@@ -8,11 +8,18 @@
     <title>Pixel Together</title>
   </head>
   <body>
-    <main><div class="picture"></div></main>
+    <section class="overlay">
+      <form action="">
+        <label for="name">Enter your name</label>
+        <input id="name" type="text" autocomplete="off" />
+        <input type="submit" />
+      </form>
+    </section>
     <aside>
       <h1>Pixel Together</h1>
-      <input type="color" value="#f35f05" />
+      <p>Active pixel artists: <i class="count"></i></p>
     </aside>
+    <main><div class="picture"></div></main>
     <script src="socket.io/socket.io.js"></script>
     <script src="src/js/script.js"></script>
   </body>
