@@ -30,10 +30,14 @@ app.use(express.static(path.join(__dirname, 'public/draw')))
 
 io.on('connection', function(socket) {
   myData.count++
+  // todo: send data (array or object) here
   io.emit('active users', myData.count)
-  io.emit('assign color', myData.colors[Math.floor(Math.random() * 4)])
+  socket.on('name', name => {
+    console.log(name + ' connnected.')
+    io.emit(name, myData.colors[Math.floor(Math.random() * 4)])
+  })
   socket.on('change color', function(location, color) {
-    // save data here
+    // todo: save data here
     io.emit('change color', location, color)
   })
   socket.on('disconnect', () => {

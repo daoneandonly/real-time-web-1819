@@ -3,11 +3,16 @@
   margin: 0;
   padding: 0;
 }
+
 .picture {
   width: 50rem;
   height: 50rem;
   display: flex;
   margin: 0 auto;
+}
+
+.row {
+  width: 75vw;
 }
 
 .overlay {
