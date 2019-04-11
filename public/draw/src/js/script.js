@@ -24,19 +24,29 @@
     overlay.parentNode.removeChild(overlay)
     //
     userInfo.name = name
+    document.querySelector('.userName').textContent = name
     socket.emit('name', name)
     //receive team color and name as object
-    socket.on(name, colorData => {
+    socket.on(name, (colorData, dataArr) => {
       userInfo.colorValue = colorData.value
       let teamName = document.querySelector('.team')
       teamName.style = 'color: ' + colorData.value
       teamName.textContent = colorData.name
+      for (let i = 0; i < dataArr.length; i++) {
+        for (let j = 0; j < dataArr[i].length; j++) {
+          if (dataArr[i][j] != undefined) {
+            document.querySelector('.' + dataArr[i][j].location).style =
+              'background-color: ' + dataArr[i][j].color
+          }
+        }
+      }
     })
   })
 
   function changeColor(location, color) {
     let cell = document.querySelector('.' + location)
-    cell.style = 'background-color: ' + color + ';'
+    cell.style =
+      'background-color: ' + color + '; border: 1px solid' + color + ';'
   }
 
   //create rows and columns
@@ -45,7 +55,7 @@
     column.classList.add('column' + i)
     for (let ii = 0; ii < gridSize; ii++) {
       let row = document.createElement('div')
-      row.classList.add('r' + i + 'c' + ii)
+      row.classList.add('c' + i + '-r' + ii)
       //add eventlistener that changes the color on clicks
       row.addEventListener('click', e => {
         changeColor(e.target.classList.value, userInfo.colorValue)

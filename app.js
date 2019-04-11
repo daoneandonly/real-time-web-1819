@@ -26,6 +26,11 @@ const myData = {
   }
 }
 
+const dataArr = new Array(24)
+for (let i = 0; i < dataArr.length; i++) {
+  dataArr[i] = new Array(24)
+}
+
 app.use(express.static(path.join(__dirname, 'public/draw')))
 
 io.on('connection', function(socket) {
@@ -34,10 +39,14 @@ io.on('connection', function(socket) {
   io.emit('active users', myData.count)
   socket.on('name', name => {
     console.log(name + ' connnected.')
-    io.emit(name, myData.colors[Math.floor(Math.random() * 4)])
+    io.emit(name, myData.colors[Math.floor(Math.random() * 4)], dataArr)
   })
   socket.on('change color', function(location, color) {
     // todo: save data here
+    let column = location.split('-')[0].split('c')[1]
+    let row = location.split('-')[1].split('r')[1]
+    dataArr[column][row] = { location: location, color: color }
+
     io.emit('change color', location, color)
   })
   socket.on('disconnect', () => {

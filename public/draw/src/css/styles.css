@@ -11,10 +11,6 @@
   margin: 0 auto;
 }
 
-.row {
-  width: 75vw;
-}
-
 .overlay {
   display: flex;
   margin: 0;
@@ -53,5 +49,5 @@ div > div {
 div > div > div {
   width: calc(75vh / 24);
   height: calc(75vh / 24);
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
