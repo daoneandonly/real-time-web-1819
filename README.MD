@@ -15,3 +15,12 @@ Run the app
 ```bash
 npm start
 ```
+
+## To do
+
+- Add team scores with a percentage out of 24\*24
+- Make team selection smart. Don't add people to filled teams while others are empty
+
+### Done
+
+- Painted pixels are stored server side in a 2D-array
