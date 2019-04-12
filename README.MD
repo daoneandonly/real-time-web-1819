@@ -20,6 +20,7 @@ npm start
 
 - Add team scores with a percentage out of 24\*24
 - Make team selection smart. Don't add people to filled teams while others are empty
+- Export an 24x24 image and make it a downloadable every couple of minutes.
 
 ### Done
 
