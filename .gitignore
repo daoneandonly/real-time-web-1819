@@ -1,2 +1,4 @@
 node_modules/
 .git/
+public/app-tut.js
+public/app.js

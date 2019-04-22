@@ -1,0 +1,36 @@
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+h1 {
+  width: 100%;
+}
+
+body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  width: 40%;
+  min-height: 15em;
+  margin: 2em 1em;
+  color: white;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
+  border-radius: 0.2em;
+}
+
+section * {
+  font-size: 1.8rem;
+  text-shadow: 0 0 1em rgba(0, 0, 0, 1);
+}
