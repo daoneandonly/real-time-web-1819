@@ -8,29 +8,93 @@ h1 {
 }
 
 body {
+  background: linear-gradient(white, #815fc0);
+  background-repeat: no-repeat;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+}
+.app {
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
+  padding-bottom: 2.5em;
+  width: 100%;
+  margin: auto;
+  min-height: 50vh;
 }
-
-section {
+.app section {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
-  background-position: center;
+  background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
-  background-size: 100% auto;
-  width: 40%;
+  background-size: auto auto;
+  width: 19.5%;
   min-height: 15em;
-  margin: 2em 1em;
+  margin: 0.25%;
   color: white;
-  box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
-  border-radius: 0.2em;
+}
+.app section *,
+.app section a {
+  font-size: 1.8rem;
+  text-shadow: 0 0 1em black;
+  color: white;
+  text-decoration: none;
+}
+.app section a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.35);
+  transition: all ease-in-out 0.1s;
+}
+.app section a h2 {
+  width: 100%;
+}
+.app section a:hover {
+  transition: all ease-out 0.15s;
+  background: rgba(0, 0, 0, 0.6);
+}
+.app .tile {
+  width: 24.5%;
+}
+.app .tile a {
+  flex-wrap: wrap;
+}
+.app button {
+  width: 100%;
+  line-height: 2.5em;
+  font-size: 1.5em;
+  outline: none;
+  border: none;
+  margin: calc(0.01 / 4);
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: 0.5em;
+  background-color: #815fc0;
+  color: white;
+}
+.app button:hover {
+  background: rgba(15, 15, 15, 0.3);
+}
+.app button:active {
+  background-color: grey;
+  color: black;
 }
 
-section * {
-  font-size: 1.8rem;
-  text-shadow: 0 0 1em rgba(0, 0, 0, 1);
+@media (max-width: 1000px) {
+  .app section {
+    width: 50%;
+  }
 }
+
+/*# sourceMappingURL=styles.css.map */
