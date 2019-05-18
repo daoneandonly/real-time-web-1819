@@ -19,8 +19,8 @@ function renderHome(topGames) {
   })
 }
 
-function createTiles(streamData) {
-  streamData.data.forEach(stream => {
+function renderTiles(currentGame) {
+  currentGame.streamers.forEach(stream => {
     let section = document.createElement('section')
     let image = stream.thumbnail_url.replace('{width}x{height}', '480x272')
     section.classList.add('tile')
@@ -31,30 +31,40 @@ function createTiles(streamData) {
     <p> Viewers: ${stream.viewer_count} </p></a>`
     app.appendChild(section)
   })
+  renderBackButton()
 }
-socket.on('renderHome', topGames => {
-  renderHome(topGames)
-})
 
-socket.on('streamerList', function(streamData) {
-  document.querySelectorAll('.app > section').forEach(tile => {
-    tile.parentNode.removeChild(tile)
-  })
-  createTiles(streamData)
+function renderBackButton() {
   let back = document.createElement('button')
   back.textContent = 'Back to overview'
   back.addEventListener('click', () => {
     window.location.hash = 'home'
   })
   app.insertBefore(back, app.children[0])
+}
+socket.on('renderHome', topGames => {
+  // window.location.hash = '#home'
+  data.topGames = topGames
+  renderHome(data.topGames)
+})
+
+socket.on('streamerList', function(currentGame) {
+  app.innerHTML = ''
+  data.currentGame = currentGame
+  renderTiles(data.currentGame)
 })
 
 window.addEventListener('hashchange', () => {
-  window.scrollTop = 0
-  if (window.location.hash == '#home') {
+  if (window.location.hash == '#home' || window.location.hash == '') {
     app.innerHTML = ''
     renderHome(data.topGames)
-  } else {
-    //redner
   }
+  // if (false) {
+  //   console.log('Error')
+  // app.innerHTML = ''
+  // let error = document.createElement('section')
+  // error.textContent = 'Page not found!'
+  // app.appendChild(error)
+  // renderBackButton()
+  // }
 })

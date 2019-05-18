@@ -22,9 +22,7 @@ axios
 
 io.on('connection', function(socket) {
   console.log('New connection established.')
-
   socket.emit('renderHome', streamData.topGames)
-
   socket.on('newList', game => {
     axios
       .get(
@@ -32,9 +30,11 @@ io.on('connection', function(socket) {
         header
       )
       .then(res => {
-        streamData.data = res.data.data
-        streamData.currentGame = game.name
-        socket.emit('streamerList', streamData)
+        streamData.currentGame = {}
+        streamData.currentGame.streamers = res.data.data
+        streamData.currentGame.name = game.name
+        streamData.currentGame.id = game.id
+        socket.emit('streamerList', streamData.currentGame)
       })
       .catch(err => {
         console.log(err)
