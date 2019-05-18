@@ -92,8 +92,15 @@ body {
 }
 
 @media (max-width: 1000px) {
-  .app section {
-    width: 50%;
+  .app section,
+.app .tile {
+    width: 49.5%;
+  }
+}
+@media (max-width: 720px) {
+  .app section,
+.app .tile {
+    width: 99.5%;
   }
 }
 
