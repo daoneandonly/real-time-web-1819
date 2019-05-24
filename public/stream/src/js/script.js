@@ -1,7 +1,9 @@
 const socket = io()
 const app = document.querySelector('.app')
 const data = {}
+const interval = {}
 
+// render intial load
 function renderHome(topGames) {
   data.topGames = topGames
   topGames.forEach(game => {
@@ -19,6 +21,7 @@ function renderHome(topGames) {
   })
 }
 
+// render tiles with streamers
 function renderTiles(currentGame) {
   currentGame.streamers.forEach(stream => {
     let section = document.createElement('section')
@@ -34,6 +37,7 @@ function renderTiles(currentGame) {
   renderBackButton()
 }
 
+// render the backbutton
 function renderBackButton() {
   let back = document.createElement('button')
   back.textContent = 'Back to overview'
@@ -42,13 +46,27 @@ function renderBackButton() {
   })
   app.insertBefore(back, app.children[0])
 }
+
+// Socket Ports
 socket.on('renderHome', topGames => {
-  // window.location.hash = '#home'
   data.topGames = topGames
   renderHome(data.topGames)
 })
 
 socket.on('streamerList', function(currentGame) {
+  app.innerHTML = ''
+  data.currentGame = currentGame
+  renderTiles(data.currentGame)
+
+  interval.game = setInterval(function() {
+    console.log('requesting new data')
+    socket.emit('requestData', data.currentGame.id)
+  }, 7500)
+})
+
+socket.on('updateData', function(currentGame) {
+  console.log('generating new data for game')
+
   app.innerHTML = ''
   data.currentGame = currentGame
   renderTiles(data.currentGame)
@@ -58,13 +76,8 @@ window.addEventListener('hashchange', () => {
   if (window.location.hash == '#home' || window.location.hash == '') {
     app.innerHTML = ''
     renderHome(data.topGames)
+    console.log('Leaving from ' + data.currentGame.id)
+    socket.emit('leave', data.currentGame.id)
+    clearInterval(interval.game)
   }
-  // if (false) {
-  //   console.log('Error')
-  // app.innerHTML = ''
-  // let error = document.createElement('section')
-  // error.textContent = 'Page not found!'
-  // app.appendChild(error)
-  // renderBackButton()
-  // }
 })

@@ -35,6 +35,36 @@ io.on('connection', function(socket) {
         streamData.currentGame.name = game.name
         streamData.currentGame.id = game.id
         socket.emit('streamerList', streamData.currentGame)
+        if (streamData.currentGame) {
+          console.log('User joined channel game')
+          socket.join(streamData.currentGame.id)
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  })
+  // Leave a room
+  socket.on('leave', id => {
+    socket.leave(id)
+    console.log('user has left channel: ' + id)
+  })
+  // requesting data for polling
+  socket.on('requestData', id => {
+    let tempData = {}
+    axios
+      .get(
+        'https://api.twitch.tv/helix/streams?game_id=' + id + '&first=12',
+        header
+      )
+      .then(res => {
+        tempData.currentGame = {}
+        tempData.currentGame.streamers = res.data.data
+        tempData.currentGame.name = 'name'
+        tempData.currentGame.id = id
+
+        console.log('sending new data to room ' + id)
+        io.to(id).emit('updateData', tempData.currentGame)
       })
       .catch(err => {
         console.log(err)
