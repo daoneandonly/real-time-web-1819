@@ -2,7 +2,7 @@
 
 This app uses the [Twitch API](https://dev.twitch.tv/docs/api/) to request the top 20 most viewed games. It shows the 12 most viewed (currently watching) streamers for every game. These viewer counts update in **_real time_** with the use of websockets.
 
-![A screenshot of the stream-viewers app](img/screenshot.png)
+![A screenshot of the stream-viewers app](img/screenshot2.png)
 
 ## How to run
 
