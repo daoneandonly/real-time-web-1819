@@ -48,9 +48,14 @@ The app consist of a node.js server and some client side javascript to handle th
 
 The following diagrams show my inner working of the code in a schematic fashion.
 
-![Image](img/diagram1.png)
+![Diagram 1](img/diagram1.png)
+_All core functions both server and client side_.
 
-![Image](img/diagram2.png)
+![Diagram 2](img/diagram2.png)
+_The flow of the application._
+
+![Diagram 3](img/diagram3.png)
+_The structure of the data objects both server and client side._
 
 ## Rate limits
 
