@@ -48,9 +48,9 @@ The app consist of a node.js server and some client side javascript to handle th
 
 The following diagrams show my inner working of the code in a schematic fashion.
 
-![Image]('img/diagram1.png')
+![Image](img/diagram1.png)
 
-![Image]('img/diagram2.png')
+![Image](img/diagram2.png)
 
 ## Rate limits
 
