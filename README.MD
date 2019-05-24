@@ -1,6 +1,7 @@
 # Real time app
 
-My real time app lets you draw individual together with others in a grid.
+This app uses the twitch api to request  the top 20 most viewed games on startup. 
+Per game is shows the 12 most viewed streamers.
 
 ## How to run
 
@@ -16,12 +17,8 @@ Run the app
 npm start
 ```
 
-## To do
+## live demo
 
-- Add team scores with a percentage out of 24\*24
-- Make team selection smart. Don't add people to filled teams while others are empty
-- Export an 24x24 image and make it a downloadable every couple of minutes.
 
-### Done
+You can view a live demo [here](https://stream-viewers.herokuapp.com).
 
-- Painted pixels are stored server side in a 2D-array
